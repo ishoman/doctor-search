@@ -7,15 +7,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 let displayResult = function (body) {
   $('#output').empty();
   $('#errorOutput').empty();
+  // let yesNo = function(){
+  //   if (body.data[i].practices[0].accepts_new_patients === true) {
+  //     return "Yes";
+  //   } else {
+  //     return "No";
+  //   }
+  // }
   let doctorArray = body.data
   for (let i = 0; i < doctorArray.length; i++) {
-    $("#output").append(`<li>${body.data[i].profile.first_name} ${body.data[i].profile.last_name}
-                          <div class="doctorInfo">
-                          <ul>
-                          <li>${body.data[i].profile.bio}</li>
-                          <ul>
+    $("#output").append(`<ul id="doctorNames">${body.data[i].profile.first_name} ${body.data[i].profile.last_name}
+                          <div id="doctorInfo">
+                            <ul>
+                              <li>Accepting new patients: ${body.data[i].practices[0].accepts_new_patients}</li>
+                              <li>address</li>
+                              <li>phone number</li>
+                              <li>website</li>
+                              <li>${body.data[i].profile.bio}</li>
+                            <ul>
                           </div>
-                        </li>`);
+                        </ul>`);
   }
   console.log(doctorArray)
 }
@@ -40,5 +51,8 @@ $(document).ready(function() {
     api.makeCall(input, displayResult, displayError, displayNoResults);
   });
 
+$("li#doctorNames").click(function(){
+  $("div#doctorInfo").toggle();
+});
 
 });
