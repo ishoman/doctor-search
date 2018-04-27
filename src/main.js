@@ -5,31 +5,32 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 let displayResult = function (body) {
+  $('#output').empty();
+  $('#errorOutput').empty();
   let doctorArray = body.data
-  console.log(doctorArray);
   for (let i = 0; i < doctorArray.length; i++) {
     $("#output").append(`<li>${body.data[i].profile.first_name} ${body.data[i].profile.last_name}</li>`);
   }
+  console.log(doctorArray)
 }
 
 let displayError = function(error) {
+  $('#output').empty();
+  $('#errorOutput').empty();
   $("#errorOutput").text(`There was an error processing your request: ${error.message}`);
 }
 
 let displayNoResults = function(body) {
+  $('#output').empty();
+  $('#errorOutput').empty();
   $("#errorOutput").text(`Your search returned no results.`);
 }
 
 $(document).ready(function() {
   $("#doctor").submit(function(event) {
     event.preventDefault();
-    $('#output').resetField();
     let input = $('#search').val();
     let api = new API
     api.makeCall(input, displayResult, displayError, displayNoResults);
   });
-  let resetField = function(){
-    $('#output').val("")
-    $()
-  }
 });
