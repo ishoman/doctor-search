@@ -4,10 +4,12 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-let api = new API
 $(document).ready(function() {
   $("#doctor").submit(function(event) {
     event.preventDefault();
-    api.makeCall();
+    debugger;
+    let input = $('#search').val();
+    let api = new API
+    api.makeCall(input);
   });
 });
