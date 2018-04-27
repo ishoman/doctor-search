@@ -9,7 +9,13 @@ let displayResult = function (body) {
   $('#errorOutput').empty();
   let doctorArray = body.data
   for (let i = 0; i < doctorArray.length; i++) {
-    $("#output").append(`<li>${body.data[i].profile.first_name} ${body.data[i].profile.last_name}</li>`);
+    $("#output").append(`<li>${body.data[i].profile.first_name} ${body.data[i].profile.last_name}
+                          <div class="doctorInfo">
+                          <ul>
+                          <li>${body.data[i].profile.bio}</li>
+                          <ul>
+                          </div>
+                        </li>`);
   }
   console.log(doctorArray)
 }
@@ -33,4 +39,6 @@ $(document).ready(function() {
     let api = new API
     api.makeCall(input, displayResult, displayError, displayNoResults);
   });
+
+
 });
