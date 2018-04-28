@@ -21,7 +21,7 @@ let displayResult = function (body) {
 
     let websiteAvailable = function(){
       if (body.data[i].practices[0].website !== undefined) {
-        return body.data[i].practices[0].website;
+        return `<a href="${websiteYesNo}">${websiteYesNo}</a>`;
       } else {
         return "N/A";
       }
@@ -34,13 +34,12 @@ let displayResult = function (body) {
                               <li>Accepting new patients: ${ patientsYesNo }</li>
                               <li>Address: ${body.data[i].practices[0].visit_address.street}, ${body.data[i].practices[0].visit_address.city}, ${body.data[i].practices[0].visit_address.state} ${body.data[i].practices[0].visit_address.zip}</li>
                               <li>Phone Number: ${body.data[i].practices[0].phones[0].number} </li>
-                              <li>Website: <a href="${websiteYesNo}">${websiteYesNo}</a></li>
+                              <li>Website: ${websiteYesNo}</li>
                               <li>${body.data[i].profile.bio}</li>
                             <ul>
                           </div>
                         </ul>`);
   }
-  console.log(doctorArray)
 }
 
 let displayError = function(error) {
@@ -62,9 +61,4 @@ $(document).ready(function() {
     let api = new API
     api.makeCall(input, displayResult, displayError, displayNoResults);
   });
-
-// $("li#doctorNames").click(function(){
-//   $("div#doctorInfo").toggle();
-// });
-
 });
